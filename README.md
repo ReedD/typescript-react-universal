@@ -6,7 +6,7 @@ This is a boilerplate for a Universal React App. Components and CSS are rendered
 
 ## Installation
 ```
-yarn && npm install huskey
+yarn && npm install husky
 ```
 
 ## Development
