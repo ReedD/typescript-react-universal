@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+
+const _ = require('lodash');
+const bs = require('browser-sync');
+const nodemon = require('gulp-nodemon');
+const rp = require('request-promise');
+const Rx = require('rxjs');
+const webpack = require('webpack');
+
+const reload = _.debounce(bs.reload.bind(bs), 1000);
+
+const reloadOnNode = () => {
+  const source = Rx.Observable.interval(100);
+  const stream = source
+    .flatMap(() => {
+      return Rx.Observable.fromPromise(rp('http://localhost:3000'));
+    })
+    .retry()
+    .take(1);
+  stream.subscribe(reload);
+};
+
+const compiler = webpack(require('./webpack/webpack.config'));
+compiler.watch({}, (err, result) => {
+  if (err) {
+    console.error(err);
+  } else {
+    const { stats } = result;
+    stats.forEach(stat => {
+      console.log(
+        stat.toString({
+          colors: true,
+        })
+      );
+    });
+  }
+});
+
+const start = Rx.Observable.bindCallback(compiler.plugin.bind(compiler));
+start('done').subscribe(() => {
+  bs.init({
+    open: false,
+    port: 5000,
+    proxy: 'http://localhost:3000',
+  });
+  bs.watch('./dist/public/**/*').on('change', reload);
+  bs.watch('./dist/server/**/*').on('change', reloadOnNode);
+  nodemon({
+    script: 'dist/server',
+    watch: 'dist/server',
+  });
+});

@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    title TypeScript React Universal
+    style#server-side-styles(type='text/css') !{styles}
+  body
+    #root !{html}
+    block scripts
+      script(src='/js/bundle.js')
+      script window.__PRELOADED_STATE__ = !{JSON.stringify(preloadedState)}
