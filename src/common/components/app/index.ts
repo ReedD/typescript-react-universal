@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
+import { IApplicationState } from 'reducers';
 import { App as Presenter } from './presenter';
 
-function mapStateToProps(state: any) {
+function mapStateToProps(state: IApplicationState) {
   return { userAgent: state.browser.userAgent };
 }
 

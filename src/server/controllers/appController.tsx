@@ -1,12 +1,12 @@
 import * as cleancss from 'clean-css';
+import { App } from 'components/app';
 import * as Express from 'express';
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 import { SheetsRegistry, SheetsRegistryProvider } from 'react-jss';
 import { Provider } from 'react-redux';
-import { App } from '../../common/components/app';
-import { IApplicationState } from '../../common/reducers';
-import configureStore from '../../common/store/configureStore';
+import { IApplicationState } from 'reducers';
+import configureStore from 'store/configureStore';
 
 export const index = (req: Express.Request, res: Express.Response) => {
   // Compile an initial state
