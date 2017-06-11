@@ -15,7 +15,7 @@
     "precommit": "lint-staged",
     "prettier": "yarn run prettier:ts && yarn run prettier:js",
     "prettier:ts": "prettier --single-quote --trailing-comma all --write \"./{src,webpack}/**/*.{ts,tsx}\"",
-    "prettier:js": "prettier --single-quote --trailing-comma es5 --write \"./{src,webpack}/**/*.{js,jsx}\" dev-server.js",
+    "prettier:js": "prettier --single-quote --trailing-comma es5 --write \"./{src,webpack}/**/*.{js,jsx}\" dev-server",
     "ts:lint": "tslint -c tslint.json -p tsconfig.json",
     "webpack:build": "webpack --config ./webpack/webpack.config.js"
   },
