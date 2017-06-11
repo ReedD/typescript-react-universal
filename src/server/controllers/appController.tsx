@@ -5,11 +5,12 @@ import { renderToString } from 'react-dom/server';
 import { SheetsRegistry, SheetsRegistryProvider } from 'react-jss';
 import { Provider } from 'react-redux';
 import { App } from '../../common/components/app';
+import { IApplicationState } from '../../common/reducers';
 import configureStore from '../../common/store/configureStore';
 
 export const index = (req: Express.Request, res: Express.Response) => {
   // Compile an initial state
-  const preloadedState = {
+  const preloadedState: IApplicationState = {
     browser: { userAgent: req.headers['user-agent'] || null },
   };
 

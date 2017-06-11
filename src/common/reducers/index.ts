@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux';
-import browser from './browser';
+import browser, { IBrowserState } from './browser';
+
+export interface IApplicationState {
+  browser: IBrowserState;
+}
 
 export default combineReducers({
   browser,

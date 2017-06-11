@@ -1,4 +1,4 @@
-interface IBrowserState {
+export interface IBrowserState {
   userAgent: string;
 }
 
