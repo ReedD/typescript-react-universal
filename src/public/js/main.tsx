@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import { App } from '../../common/components/app';
 import configureStore from '../../common/store/configureStore';
 
-const preloadedState = (window as any).__PRELOADED_STATE__;
-const store = configureStore(preloadedState);
+declare const __PRELOADED_STATE__: any;
+const store = configureStore(__PRELOADED_STATE__);
 
 render(
   <Provider store={store}>
