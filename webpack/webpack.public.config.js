@@ -22,6 +22,7 @@ module.exports = {
   ].filter(item => item),
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
+    modules: ['node_modules', path.join('src', 'common')],
   },
   module: {
     loaders: [

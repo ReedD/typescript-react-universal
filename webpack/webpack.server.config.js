@@ -21,6 +21,7 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
+    modules: ['node_modules', path.join('src', 'common')],
   },
   target: 'node',
   node: {
