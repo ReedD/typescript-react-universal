@@ -1,11 +1,17 @@
 import { rootEpic } from 'actions';
-import rootReducer from 'reducers';
-import { applyMiddleware, createStore } from 'redux';
+import { History } from 'history';
+import { routerMiddleware as createRouterMiddleware } from 'react-router-redux';
+import rootReducer, { IApplicationState } from 'reducers';
+import { applyMiddleware, createStore, Store } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 
-const epicMiddleware = createEpicMiddleware(rootEpic);
-const createStoreWithMiddleware = applyMiddleware(epicMiddleware)(createStore);
-
-export default function configureStore(initialState?: any) {
+export default function configureStore(
+  history: History,
+  initialState: IApplicationState,
+): Store<IApplicationState> {
+  const createStoreWithMiddleware = applyMiddleware(
+    createRouterMiddleware(history),
+    createEpicMiddleware(rootEpic),
+  )(createStore);
   return createStoreWithMiddleware(rootReducer, initialState);
 }
