@@ -2,11 +2,11 @@ export interface IBrowserState {
   userAgent: string;
 }
 
-const initalState: IBrowserState = {
+const initialState: IBrowserState = {
   userAgent: null,
 };
 
-const browser = (state = initalState, action: string) => {
+const browser = (state = initialState, action: string) => {
   return state;
 };
 
