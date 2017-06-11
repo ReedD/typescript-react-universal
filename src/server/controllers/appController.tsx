@@ -9,7 +9,9 @@ import configureStore from '../../common/store/configureStore';
 
 export const index = (req: Express.Request, res: Express.Response) => {
   // Compile an initial state
-  const preloadedState = {};
+  const preloadedState = {
+    browser: { userAgent: req.headers['user-agent'] || null },
+  };
 
   // Create a new Redux store instance
   const store = configureStore(preloadedState);

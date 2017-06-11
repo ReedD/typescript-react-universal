@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { App as Presenter } from './presenter';
 
-function mapStateToProps() {
-  return {};
+function mapStateToProps(state: any) {
+  return { userAgent: state.browser.userAgent };
 }
 
 function mapDispatchToProps() {
