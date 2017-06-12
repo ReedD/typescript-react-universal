@@ -14,7 +14,9 @@ export const index = (req: Express.Request, res: Express.Response) => {
   const preloadedState: IApplicationState = {};
 
   // Create a new Redux store instance
-  const history = createMemoryHistory();
+  const history = createMemoryHistory({
+    initialEntries: [req.url],
+  });
   const store = configureStore(history, preloadedState);
   const sheets = new SheetsRegistry();
 
@@ -24,7 +26,7 @@ export const index = (req: Express.Request, res: Express.Response) => {
       <App
         history={history}
         store={store}
-        userAgent={req.headers['user-agent']}
+        userAgent={req.headers['user-agent'] || 'all'}
       />
     </SheetsRegistryProvider>,
   );
