@@ -1,10 +1,7 @@
-export interface IBrowserState {
-  userAgent: string;
-}
+// tslint:disable-next-line
+export interface IBrowserState {}
 
-const initialState: IBrowserState = {
-  userAgent: null,
-};
+const initialState: IBrowserState = {};
 
 const browser = (state = initialState, action: string) => {
   return state;

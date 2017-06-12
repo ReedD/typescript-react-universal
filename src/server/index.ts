@@ -29,5 +29,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.get('/', appController.index);
+app.get('/about', appController.index);
 
 app.listen(3000);

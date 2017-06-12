@@ -1,6 +1,7 @@
 import * as cleancss from 'clean-css';
 import { App } from 'components/app';
 import * as Express from 'express';
+import { createMemoryHistory } from 'history';
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 import { SheetsRegistry, SheetsRegistryProvider } from 'react-jss';
@@ -10,20 +11,23 @@ import configureStore from 'store/configureStore';
 
 export const index = (req: Express.Request, res: Express.Response) => {
   // Compile an initial state
-  const preloadedState: IApplicationState = {
-    browser: { userAgent: req.headers['user-agent'] || null },
-  };
+  const preloadedState: IApplicationState = {};
 
   // Create a new Redux store instance
-  const store = configureStore(preloadedState);
+  const history = createMemoryHistory({
+    initialEntries: [req.url],
+  });
+  const store = configureStore(history, preloadedState);
   const sheets = new SheetsRegistry();
 
   // Render the component to a string
   const html = renderToString(
     <SheetsRegistryProvider registry={sheets}>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <App
+        history={history}
+        store={store}
+        userAgent={req.headers['user-agent'] || 'all'}
+      />
     </SheetsRegistryProvider>,
   );
 
