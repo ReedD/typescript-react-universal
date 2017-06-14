@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import browser, { IBrowserState } from './browser';
+import signup, { ISignUpState } from './signup';
 
-// tslint:disable-next-line
-export interface IApplicationState {}
+export interface IApplicationState {
+  signup?: ISignUpState;
+}
 
 export default combineReducers({
-  browser,
+  signup,
 });

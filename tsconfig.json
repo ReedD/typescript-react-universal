@@ -13,7 +13,8 @@
 			"*": [
 				"node_modules/*",
 				"src/common/*",
-				"src/types/*"
+				"src/types/*",
+				"src/*"
 			]
 		}
 	},

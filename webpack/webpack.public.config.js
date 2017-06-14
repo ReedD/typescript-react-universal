@@ -15,6 +15,8 @@ module.exports = {
     new webpack.DefinePlugin({
       CLIENT: true,
       SERVER: false,
+      PRODUCTION: isProduction,
+      DEVELOPMENT: !isProduction,
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },

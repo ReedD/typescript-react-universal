@@ -1,6 +1,6 @@
 import * as cleancss from 'clean-css';
 import { App } from 'components/app';
-import * as Express from 'express';
+import { RequestHandler } from 'express';
 import { createMemoryHistory } from 'history';
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import { IApplicationState } from 'reducers';
 import configureStore from 'store/configureStore';
 
-export const index = (req: Express.Request, res: Express.Response) => {
+export const index: RequestHandler = (req, res) => {
   // Compile an initial state
   const preloadedState: IApplicationState = {};
 

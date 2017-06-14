@@ -1,12 +1,17 @@
 import { About } from 'components/about';
 import { Home } from 'components/home';
+import { Login } from 'components/login';
+import { SignUp } from 'components/signup';
 import { getMuiTheme, MuiThemeProvider } from 'material-ui/styles';
 import * as React from 'react';
 import useSheet from 'react-jss';
 import { Provider } from 'react-redux';
 import { Route } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
+import * as injectTapEventPlugin from 'react-tap-event-plugin';
 import styles from './style';
+
+injectTapEventPlugin();
 
 export interface IAppProps {
   store: any;
@@ -28,7 +33,9 @@ export class App extends React.Component<IAppProps, undefined> {
           <MuiThemeProvider muiTheme={muiTheme}>
             <div>
               <Route exact={true} path="/" component={Home} />
-              <Route path="/about" component={About} />
+              <Route exact={true} path="/about" component={About} />
+              <Route exact={true} path="/signup" component={SignUp} />
+              <Route exact={true} path="/login" component={Login} />
             </div>
           </MuiThemeProvider>
         </ConnectedRouter>

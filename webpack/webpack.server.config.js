@@ -3,6 +3,8 @@ const nodeExternals = require('webpack-node-externals');
 const path = require('path');
 const webpack = require('webpack');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 module.exports = {
   devtool: 'eval-source-map',
   entry: [path.join(__dirname, '..', 'src', 'server', 'index.ts')],
@@ -14,6 +16,8 @@ module.exports = {
     new webpack.DefinePlugin({
       CLIENT: false,
       SERVER: true,
+      PRODUCTION: isProduction,
+      DEVELOPMENT: !isProduction,
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },

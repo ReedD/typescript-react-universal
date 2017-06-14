@@ -1,7 +1,10 @@
 import * as compression from 'compression';
 import * as express from 'express';
 import * as minifyHTML from 'express-minify-html';
+import * as passport from 'passport';
 import * as path from 'path';
+import './config/passport';
+import * as userController from './controllers/api/userController';
 import * as appController from './controllers/appController';
 
 const app = express();
@@ -28,7 +31,12 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
+
+app.get('/api/users/login', passport.authenticate('jwt'), userController.login);
+
 app.get('/', appController.index);
 app.get('/about', appController.index);
+app.get('/signup', appController.index);
+app.get('/login', appController.index);
 
 app.listen(3000);
