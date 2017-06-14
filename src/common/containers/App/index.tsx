@@ -1,7 +1,7 @@
-import { About } from 'components/about';
-import { Home } from 'components/home';
-import { Login } from 'components/login';
-import { SignUp } from 'components/signup';
+import { About } from 'containers/About';
+import { Home } from 'containers/Home';
+import { Login } from 'containers/users/Login';
+import { SignUp } from 'containers/users/SignUp';
 import { getMuiTheme, MuiThemeProvider } from 'material-ui/styles';
 import * as React from 'react';
 import useSheet from 'react-jss';

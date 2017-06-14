@@ -1,10 +1,10 @@
-import rootEpic from 'actions/rootEpic';
 import { History } from 'history';
 import { routerMiddleware as createRouterMiddleware } from 'react-router-redux';
 import rootReducer, { IApplicationState } from 'reducers';
 import { applyMiddleware, createStore, Store } from 'redux';
 import { createLogger } from 'redux-logger';
 import { createEpicMiddleware } from 'redux-observable';
+import rootEpic from '../rootEpic';
 
 export default function configureStore(
   history: History,

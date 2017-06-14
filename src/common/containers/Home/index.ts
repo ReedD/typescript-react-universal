@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { IApplicationState } from 'reducers';
-import { Login as Presenter } from './presenter';
+import { Home as Presenter } from './Home';
 
 function mapStateToProps(state: IApplicationState) {
   return {};
@@ -10,4 +10,4 @@ function mapDispatchToProps() {
   return {};
 }
 
-export const Login = connect(mapStateToProps, mapDispatchToProps)(Presenter);
+export const Home = connect(mapStateToProps, mapDispatchToProps)(Presenter);

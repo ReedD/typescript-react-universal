@@ -1,12 +1,12 @@
-import * as SignUpActions from 'actions/signup';
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux';
 import { IApplicationState } from 'reducers';
 import { bindActionCreators, Dispatch } from 'redux';
+import * as SignUpActions from './actions';
 import {
   ISignUpDispatchProps,
   ISignUpStateProps,
   SignUp as Presenter,
-} from './presenter';
+} from './SignUp';
 
 const mapStateToProps: MapStateToProps<ISignUpStateProps, any> = (
   state: IApplicationState,

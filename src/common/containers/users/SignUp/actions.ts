@@ -1,6 +1,6 @@
-import * as ActionType from 'constants/actionTypes';
 import { FormEvent } from 'react';
 import { Action } from 'redux';
+import * as ActionType from './constants';
 
 export interface ISignUpAction extends Action {
   name: string;

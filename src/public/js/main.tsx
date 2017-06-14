@@ -1,4 +1,4 @@
-import { App } from 'components/app';
+import { App } from 'containers/App';
 import { createBrowserHistory } from 'history';
 import * as React from 'react';
 import { render } from 'react-dom';

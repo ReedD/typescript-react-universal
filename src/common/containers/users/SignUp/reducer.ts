@@ -1,8 +1,8 @@
-import { ISignUpAction } from 'actions/signup';
-import * as ActionType from 'constants/actionTypes';
 import { Map } from 'immutable';
 import { IUser } from 'interfaces/user';
 import { Reducer } from 'redux';
+import { ISignUpAction } from './actions';
+import * as ActionType from './constants';
 
 export interface ISignUpState extends IUser {
   submitting: boolean;

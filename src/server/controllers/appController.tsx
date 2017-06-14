@@ -1,5 +1,5 @@
 import * as cleancss from 'clean-css';
-import { App } from 'components/app';
+import { App } from 'containers/App';
 import { RequestHandler } from 'express';
 import { createMemoryHistory } from 'history';
 import * as React from 'react';

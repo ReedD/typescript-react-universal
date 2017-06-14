@@ -1,5 +1,5 @@
+import signup, { ISignUpState } from 'containers/users/SignUp/reducer';
 import { combineReducers } from 'redux';
-import signup, { ISignUpState } from './signup';
 
 export interface IApplicationState {
   signup?: ISignUpState;
