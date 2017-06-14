@@ -3,26 +3,14 @@ import { FormEvent } from 'react';
 import { Action } from 'redux';
 
 export interface ISignUpAction extends Action {
+  name: string;
   value: string;
 }
 
-export function updateEmail(e: FormEvent<{}>, value: string): ISignUpAction {
+export const formUpdate = (name: string, value: string): ISignUpAction => {
   return {
-    type: ActionType.SIGNUP_UPDATE_EMAIL,
+    name,
+    type: ActionType.SIGNUP_FORM_UPDATE,
     value,
   };
-}
-
-export function updateName(e: FormEvent<{}>, value: string): ISignUpAction {
-  return {
-    type: ActionType.SIGNUP_UPDATE_NAME,
-    value,
-  };
-}
-
-export function updatePassword(e: FormEvent<{}>, value: string): ISignUpAction {
-  return {
-    type: ActionType.SIGNUP_UPDATE_PASSWORD,
-    value,
-  };
-}
+};

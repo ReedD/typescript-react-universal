@@ -22,14 +22,8 @@ const signup: Reducer<ISignUpState> = (
 ) => {
   let newState: any = Map(state);
   switch (action.type) {
-    case ActionType.SIGNUP_UPDATE_EMAIL:
-      newState = newState.set('email', action.value);
-      break;
-    case ActionType.SIGNUP_UPDATE_NAME:
-      newState = newState.set('name', action.value);
-      break;
-    case ActionType.SIGNUP_UPDATE_PASSWORD:
-      newState = newState.set('password', action.value);
+    case ActionType.SIGNUP_FORM_UPDATE:
+      newState = newState.set(action.name, action.value);
       break;
   }
   return newState.toObject();

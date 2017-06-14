@@ -5,6 +5,12 @@ import { RouteProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import styles from './style';
 
+export enum SignUpFormInputName {
+  NAME = 'name' as any,
+  EMAIL = 'email' as any,
+  PASSWORD = 'password' as any,
+}
+
 export interface ISignUpStateProps {
   name?: string;
   password?: string;
@@ -13,9 +19,7 @@ export interface ISignUpStateProps {
 }
 
 export interface ISignUpDispatchProps {
-  updateEmail?: any;
-  updateName?: any;
-  updatePassword?: any;
+  formUpdate?: any;
 }
 
 export interface ISignUpProps extends ISignUpStateProps, ISignUpDispatchProps {}
@@ -24,30 +28,35 @@ export interface ISignUpProps extends ISignUpStateProps, ISignUpDispatchProps {}
 export class SignUp extends React.Component<any, any> {
   public render() {
     const { classes } = this.props.sheet;
+    const formUpdate = (name: SignUpFormInputName) => {
+      return (e: React.FormEvent<any>, value: string) => {
+        return this.props.formUpdate(name, value);
+      };
+    };
     return (
       <div className={classes.signUp}>
         <div className={classes.form}>
           <TextField
-            id="name"
-            name="name"
+            id={String(SignUpFormInputName.NAME)}
+            name={String(SignUpFormInputName.NAME)}
             hintText="Name"
             value={this.props.name}
-            onChange={this.props.updateName}
+            onChange={formUpdate(SignUpFormInputName.NAME)}
           />
           <TextField
-            id="email"
-            name="email"
+            id={String(SignUpFormInputName.EMAIL)}
+            name={String(SignUpFormInputName.EMAIL)}
             hintText="E-Mail"
             value={this.props.email}
-            onChange={this.props.updateEmail}
+            onChange={formUpdate(SignUpFormInputName.EMAIL)}
           />
           <TextField
-            id="password"
-            name="password"
+            id={String(SignUpFormInputName.PASSWORD)}
+            name={String(SignUpFormInputName.PASSWORD)}
             hintText="Password"
             type="password"
             value={this.props.password}
-            onChange={this.props.updatePassword}
+            onChange={formUpdate(SignUpFormInputName.PASSWORD)}
           />
           <div className={classes.actions}>
             <Link to="/login">

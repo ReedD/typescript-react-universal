@@ -14,7 +14,7 @@ export default function configureStore(
     createRouterMiddleware(history),
     createEpicMiddleware(rootEpic),
   ];
-  if (DEVELOPMENT) {
+  if (DEVELOPMENT && CLIENT) {
     middleware.push(createLogger());
   }
 

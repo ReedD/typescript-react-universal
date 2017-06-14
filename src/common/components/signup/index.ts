@@ -18,9 +18,7 @@ const mapDispatchToProps: MapDispatchToProps<ISignUpDispatchProps, any> = (
   dispatch: Dispatch<IApplicationState>,
 ) => {
   return {
-    updateEmail: bindActionCreators(SignUpActions.updateEmail, dispatch),
-    updateName: bindActionCreators(SignUpActions.updateName, dispatch),
-    updatePassword: bindActionCreators(SignUpActions.updatePassword, dispatch),
+    formUpdate: bindActionCreators(SignUpActions.formUpdate, dispatch),
   };
 };
 
