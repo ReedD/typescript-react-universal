@@ -8,15 +8,16 @@ import {
   SignUp as Presenter,
 } from './SignUp';
 
-const mapStateToProps: MapStateToProps<ISignUpStateProps, any> = (
+const mapStateToProps: MapStateToProps<ISignUpStateProps, undefined> = (
   state: IApplicationState,
 ) => {
   return state.signup;
 };
 
-const mapDispatchToProps: MapDispatchToProps<ISignUpDispatchProps, any> = (
-  dispatch: Dispatch<IApplicationState>,
-) => {
+const mapDispatchToProps: MapDispatchToProps<
+  ISignUpDispatchProps,
+  undefined
+> = (dispatch: Dispatch<IApplicationState>) => {
   return {
     formSubmit: bindActionCreators(SignUpActions.formSubmit, dispatch),
     formUpdate: bindActionCreators(SignUpActions.formUpdate, dispatch),

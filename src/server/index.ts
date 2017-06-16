@@ -33,6 +33,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.get('/api/users/login', passport.authenticate('jwt'), userController.login);
+app.post('/api/users', userController.create);
 
 app.get('/', appController.index);
 app.get('/about', appController.index);

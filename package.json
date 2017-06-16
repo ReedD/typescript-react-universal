@@ -57,7 +57,8 @@
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
     "rx": "^4.1.0",
-    "rxjs": "^5.4.0"
+    "rxjs": "^5.4.0",
+    "typescript-fsa": "^2.3.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^1.0.0",

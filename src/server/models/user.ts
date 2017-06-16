@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
-import { IUser } from 'interfaces/user';
+import { IUser } from 'interfaces';
 import { connection, Document, Model, Schema } from 'mongoose';
 
 export const userSchema = new Schema(

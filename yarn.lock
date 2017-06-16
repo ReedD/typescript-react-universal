@@ -5390,7 +5390,11 @@ type-is@~1.6.15:
     media-typer "0.3.0"
     mime-types "~2.1.15"
 
-typescript@2.4.0:
+typescript-fsa@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/typescript-fsa/-/typescript-fsa-2.3.0.tgz#53ec0e18dafb802001f5f99ec3b852b7a8e04d02"
+
+typescript@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.4.0.tgz#aef5a8d404beba36ad339abf079ddddfffba86dd"
 

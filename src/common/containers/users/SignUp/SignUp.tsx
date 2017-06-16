@@ -13,6 +13,11 @@ enum SignUpFormInputName {
   Password = 'password',
 }
 
+export interface IUpdatePayload {
+  name: string;
+  value: string;
+}
+
 export interface ISignUpFormData {
   email?: string;
   name?: string;
@@ -25,7 +30,7 @@ export interface ISignUpStateProps extends ISignUpFormData {
 
 export interface ISignUpDispatchProps {
   formSubmit?: (form: ISignUpFormData) => any;
-  formUpdate?: (name: string, value: string) => any;
+  formUpdate?: (change: IUpdatePayload) => any;
 }
 
 export interface ISignUpProps extends ISignUpStateProps, ISignUpDispatchProps, RouteComponentProps<
@@ -87,7 +92,7 @@ export class SignUp extends React.Component<ISignUpProps, undefined> {
   }
   private formUpdate(name: SignUpFormInputName) {
     return (e: React.FormEvent<HTMLInputElement>, value: string) => {
-      return this.props.formUpdate(name, value);
+      return this.props.formUpdate({ name, value });
     };
   }
 }

@@ -8,5 +8,6 @@ export const login: RequestHandler = (req, res) => {
 
 export const create: RequestHandler = (req, res) => {
   const user = new UserModel(req.body);
-  user.save().then(u => res.json(u)).catch(e => res.json(e));
+  // user.save().then(u => res.json(u)).catch(e => res.json(e));
+  res.send(user);
 };
