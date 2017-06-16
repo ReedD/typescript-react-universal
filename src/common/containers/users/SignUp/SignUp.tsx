@@ -1,71 +1,93 @@
+import { noop } from 'lodash';
 import { RaisedButton, TextField } from 'material-ui';
 import * as React from 'react';
 import useSheet from 'react-jss';
 import { RouteProps } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import styles from './style';
 
-export enum SignUpFormInputName {
-  NAME = 'name' as any,
-  EMAIL = 'email' as any,
-  PASSWORD = 'password' as any,
+enum SignUpFormInputName {
+  Email = 'email',
+  Name = 'name',
+  Password = 'password',
 }
 
-export interface ISignUpStateProps {
+export interface ISignUpFormData {
+  email?: string;
   name?: string;
   password?: string;
-  email?: string;
+}
+
+export interface ISignUpStateProps extends ISignUpFormData {
   sheet?: any;
 }
 
 export interface ISignUpDispatchProps {
-  formUpdate?: any;
+  formSubmit?: (form: ISignUpFormData) => any;
+  formUpdate?: (name: string, value: string) => any;
 }
 
-export interface ISignUpProps extends ISignUpStateProps, ISignUpDispatchProps {}
+export interface ISignUpProps extends ISignUpStateProps, ISignUpDispatchProps, RouteComponentProps<
+  any
+> {}
 
 @useSheet(styles)
-export class SignUp extends React.Component<any, any> {
+export class SignUp extends React.Component<ISignUpProps, undefined> {
+  public static defaultProps = {
+    formSubmit: noop,
+    formUpdate: noop,
+  };
+
   public render() {
     const { classes } = this.props.sheet;
-    const formUpdate = (name: SignUpFormInputName) => {
-      return (e: React.FormEvent<any>, value: string) => {
-        return this.props.formUpdate(name, value);
-      };
-    };
+    const formSubmit = this.formSubmit.bind(this);
+    const formUpdate = this.formUpdate.bind(this);
     return (
       <div className={classes.signUp}>
         <div className={classes.form}>
           <TextField
-            id={String(SignUpFormInputName.NAME)}
-            name={String(SignUpFormInputName.NAME)}
+            id={SignUpFormInputName.Name}
+            name={SignUpFormInputName.Name}
             hintText="Name"
             value={this.props.name}
-            onChange={formUpdate(SignUpFormInputName.NAME)}
+            onChange={formUpdate(SignUpFormInputName.Name)}
           />
           <TextField
-            id={String(SignUpFormInputName.EMAIL)}
-            name={String(SignUpFormInputName.EMAIL)}
+            id={SignUpFormInputName.Email}
+            name={SignUpFormInputName.Email}
             hintText="E-Mail"
             value={this.props.email}
-            onChange={formUpdate(SignUpFormInputName.EMAIL)}
+            onChange={formUpdate(SignUpFormInputName.Email)}
           />
           <TextField
-            id={String(SignUpFormInputName.PASSWORD)}
-            name={String(SignUpFormInputName.PASSWORD)}
+            id={SignUpFormInputName.Password}
+            name={SignUpFormInputName.Password}
             hintText="Password"
             type="password"
             value={this.props.password}
-            onChange={formUpdate(SignUpFormInputName.PASSWORD)}
+            onChange={formUpdate(SignUpFormInputName.Password)}
           />
           <div className={classes.actions}>
             <Link to="/login">
               <RaisedButton label="Login" />
             </Link>
-            <RaisedButton label="Sign Up" primary={true} />
+            <RaisedButton label="Sign Up" onClick={formSubmit} primary={true} />
           </div>
         </div>
       </div>
     );
+  }
+  private formSubmit() {
+    this.props.formSubmit({
+      email: this.props.name,
+      name: this.props.name,
+      password: this.props.name,
+    });
+  }
+  private formUpdate(name: SignUpFormInputName) {
+    return (e: React.FormEvent<HTMLInputElement>, value: string) => {
+      return this.props.formUpdate(name, value);
+    };
   }
 }

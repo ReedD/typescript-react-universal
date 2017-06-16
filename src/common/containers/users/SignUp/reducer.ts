@@ -1,8 +1,6 @@
-import { Map } from 'immutable';
 import { IUser } from 'interfaces/user';
 import { Reducer } from 'redux';
-import { ISignUpAction } from './actions';
-import * as ActionType from './constants';
+import { ISignUpUpdateAction, SignUpAction } from './actions';
 
 export interface ISignUpState extends IUser {
   submitting: boolean;
@@ -18,15 +16,14 @@ const initialState: ISignUpState = {
 
 const signup: Reducer<ISignUpState> = (
   state = initialState,
-  action: ISignUpAction,
+  action: ISignUpUpdateAction,
 ) => {
-  let newState: any = Map(state);
   switch (action.type) {
-    case ActionType.SIGNUP_FORM_UPDATE:
-      newState = newState.set(action.name, action.value);
-      break;
+    case SignUpAction.Update:
+      return { ...state, [action.payload.name]: action.payload.value };
+    default:
+      return state;
   }
-  return newState.toObject();
 };
 
 export default signup;

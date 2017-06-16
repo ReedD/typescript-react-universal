@@ -18,6 +18,7 @@ const mapDispatchToProps: MapDispatchToProps<ISignUpDispatchProps, any> = (
   dispatch: Dispatch<IApplicationState>,
 ) => {
   return {
+    formSubmit: bindActionCreators(SignUpActions.formSubmit, dispatch),
     formUpdate: bindActionCreators(SignUpActions.formUpdate, dispatch),
   };
 };
