@@ -1,5 +1,5 @@
-import { About } from 'containers/About';
-import { Home } from 'containers/Home';
+import { About } from 'containers/pages/About';
+import { Home } from 'containers/pages/Home';
 import { Login } from 'containers/users/Login';
 import { SignUp } from 'containers/users/SignUp';
 import { getMuiTheme, MuiThemeProvider } from 'material-ui/styles';
