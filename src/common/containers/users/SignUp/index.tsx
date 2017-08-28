@@ -1,9 +1,9 @@
 import { noop } from 'lodash';
-import { RaisedButton, TextField } from 'material-ui';
+import { Button, TextField } from 'material-ui';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import useSheet from 'react-jss';
 import { RouteProps } from 'react-router';
-import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
 import styles from './style';
 
@@ -33,10 +33,9 @@ export interface ISignUpDispatchProps {
   formUpdate?: (change: IUpdatePayload) => any;
 }
 
-export interface ISignUpProps extends ISignUpStateProps, ISignUpDispatchProps, RouteComponentProps<
-  any
-> {}
+export interface ISignUpProps extends ISignUpStateProps, ISignUpDispatchProps {}
 
+@observer
 @useSheet(styles)
 export class SignUp extends React.Component<ISignUpProps, undefined> {
   public static defaultProps = {
@@ -54,30 +53,30 @@ export class SignUp extends React.Component<ISignUpProps, undefined> {
           <TextField
             id={SignUpFormInputName.Name}
             name={SignUpFormInputName.Name}
-            hintText="Name"
+            placeholder="Name"
             value={this.props.name}
             onChange={formUpdate(SignUpFormInputName.Name)}
           />
           <TextField
             id={SignUpFormInputName.Email}
             name={SignUpFormInputName.Email}
-            hintText="E-Mail"
+            placeholder="E-Mail"
             value={this.props.email}
             onChange={formUpdate(SignUpFormInputName.Email)}
           />
           <TextField
             id={SignUpFormInputName.Password}
             name={SignUpFormInputName.Password}
-            hintText="Password"
+            placeholder="Password"
             type="password"
             value={this.props.password}
             onChange={formUpdate(SignUpFormInputName.Password)}
           />
           <div className={classes.actions}>
             <Link to="/login">
-              <RaisedButton label="Login" />
+              <Button>Login</Button>
             </Link>
-            <RaisedButton label="Sign Up" onClick={formSubmit} primary={true} />
+            <Button onClick={formSubmit}>Sign Up</Button>
           </div>
         </div>
       </div>

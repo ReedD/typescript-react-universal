@@ -6,13 +6,13 @@ import {
   StrategyOptions as JWTStrategyOptions,
 } from 'passport-jwt';
 
-const options: JWTStrategyOptions = {
-  jwtFromRequest: ExtractJwt.fromAuthHeader(),
+const options = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: 'secret',
 };
 
 passport.use(
-  new JwtStrategy(options, (jwtPayload, done) => {
+  new JwtStrategy(options, (jwtPayload: any, done: any) => {
     console.log(jwtPayload);
     done(null, {
       name: 'Reed',

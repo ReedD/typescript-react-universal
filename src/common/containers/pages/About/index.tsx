@@ -1,8 +1,10 @@
+import { observer } from 'mobx-react';
 import * as React from 'react';
 import useSheet from 'react-jss';
 import { Link } from 'react-router-dom';
 import styles from './style';
 
+@observer
 @useSheet(styles)
 export class About extends React.Component<any, any> {
   public render() {
@@ -11,7 +13,9 @@ export class About extends React.Component<any, any> {
       <div>
         <h1>About</h1>
         <ul>
-          <li><Link to="/">Home</Link></li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
         </ul>
       </div>
     );

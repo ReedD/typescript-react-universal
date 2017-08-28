@@ -2,9 +2,10 @@
 	"extends": ["tslint:latest", "tslint-react"],
 	"rules": {
 		"arrow-parens": false,
-		"no-console": [false],
-		"quotemark": [true, "single", "jsx-double"],
+		"jsx-no-bind": false,
 		"jsx-no-multiline-js": false,
-		"jsx-no-bind": false
+		"no-console": [false],
+		"no-submodule-imports": false,
+		"quotemark": [true, "single", "jsx-double"]
 	}
 }

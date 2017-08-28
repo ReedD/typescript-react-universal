@@ -1,16 +1,15 @@
 import { App } from 'containers/App';
-import { createBrowserHistory } from 'history';
 import * as React from 'react';
 import { render } from 'react-dom';
-import { IApplicationState } from 'reducers';
-import configureStore from 'store/configureStore';
+import { BrowserRouter } from 'react-router-dom';
+// import { createBrowserHistory } from 'history';
 
-declare const __PRELOADED_STATE__: IApplicationState;
-const history = createBrowserHistory();
-const store = configureStore(history, __PRELOADED_STATE__);
+// const history = createBrowserHistory();
 
 render(
-  <App store={store} history={history} userAgent={navigator.userAgent} />,
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
   document.getElementById('root'),
   () => {
     const ssStyles = document.getElementById('server-side-styles');
