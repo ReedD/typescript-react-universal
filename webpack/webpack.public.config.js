@@ -5,7 +5,10 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   devtool: isProduction ? 'hidden-source-map' : 'eval-source-map',
-  entry: [path.join(__dirname, '..', 'src', 'public', 'js', 'main.tsx')],
+  entry: [
+    'babel-polyfill',
+    path.join(__dirname, '..', 'src', 'public', 'js', 'main.tsx'),
+  ],
   output: {
     path: path.join(__dirname, '..', 'dist', 'public', 'js'),
     publicPath: '/assets/',

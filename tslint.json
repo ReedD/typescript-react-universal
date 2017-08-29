@@ -1,11 +1,14 @@
 {
-	"extends": ["tslint:latest", "tslint-react"],
-	"rules": {
-		"arrow-parens": false,
-		"jsx-no-bind": false,
-		"jsx-no-multiline-js": false,
-		"no-console": [false],
-		"no-submodule-imports": false,
-		"quotemark": [true, "single", "jsx-double"]
-	}
+  "extends": ["tslint:latest", "tslint-react"],
+  "rules": {
+    "arrow-parens": false,
+    "jsx-no-bind": false,
+    "jsx-no-multiline-js": false,
+    "member-access": false,
+    "no-console": [false],
+    "no-empty": false,
+    "no-submodule-imports": false,
+    "quotemark": [true, "single", "jsx-double"],
+    "semicolon": ["ignore-bound-class-methods"]
+  }
 }

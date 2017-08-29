@@ -7,7 +7,10 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: [path.join(__dirname, '..', 'src', 'server', 'index.ts')],
+  entry: [
+    'babel-polyfill',
+    path.join(__dirname, '..', 'src', 'server', 'index.ts'),
+  ],
   output: {
     path: path.join(__dirname, '..', 'dist', 'server'),
     filename: 'index.js',

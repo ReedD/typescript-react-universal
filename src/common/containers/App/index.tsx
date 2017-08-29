@@ -1,7 +1,7 @@
 import { About } from 'containers/pages/About';
 import { Home } from 'containers/pages/Home';
 import { Login } from 'containers/users/Login';
-import { SignUp } from 'containers/users/SignUp';
+import SignUp from 'containers/users/SignUp';
 import * as React from 'react';
 import useSheet from 'react-jss';
 import { Route } from 'react-router-dom';
