@@ -31,6 +31,12 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
     modules: ['node_modules', path.join('src', 'common')],
+    alias: {
+      react: 'preact-compat',
+      'react-dom': 'preact-compat',
+      // Not necessary unless you consume a module using `createClass`
+      // 'create-react-class': 'preact-compat/lib/create-react-class',
+    },
   },
   target: 'node',
   node: {

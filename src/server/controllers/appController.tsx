@@ -4,9 +4,10 @@ import * as compose from 'koa-compose';
 import * as Router from 'koa-router';
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
-import { SheetsRegistry, SheetsRegistryProvider } from 'react-jss';
 import { StaticRouter } from 'react-router-dom';
 import configureStore from 'store/configureStore';
+import { sheetsRegistry } from 'styles';
+
 // import { createMemoryHistory } from 'history';
 
 const router = new Router();
@@ -16,7 +17,8 @@ router.get('/*', async (ctx, next) => {
   // const history = createMemoryHistory({
   //   initialEntries: [req.url],
   // });
-  const sheets = new SheetsRegistry();
+
+  sheetsRegistry.reset();
 
   // Render the component to a string
   const context = {};
@@ -26,7 +28,7 @@ router.get('/*', async (ctx, next) => {
     </StaticRouter>,
   );
 
-  const { styles } = new cleancss().minify(sheets.toString());
+  const { styles } = new cleancss().minify(sheetsRegistry.toString());
 
   // Grab the initial state from our Redux store
   const finalState = {}; // store.getState();
