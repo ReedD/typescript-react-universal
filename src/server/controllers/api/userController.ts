@@ -1,3 +1,4 @@
+import * as compose from 'koa-compose';
 import * as Router from 'koa-router';
 import { UserModel } from '../../models/user';
 
@@ -15,4 +16,4 @@ router.post('/api/users', async (ctx, next) => {
   ctx.body = user;
 });
 
-export default router;
+export default compose([router.routes(), router.allowedMethods()]);

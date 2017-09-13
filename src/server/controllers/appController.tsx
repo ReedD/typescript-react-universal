@@ -1,5 +1,6 @@
 import * as cleancss from 'clean-css';
 import { App } from 'containers/App';
+import * as compose from 'koa-compose';
 import * as Router from 'koa-router';
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -37,4 +38,4 @@ router.get('/*', async (ctx, next) => {
   });
 });
 
-export default router;
+export default compose([router.routes(), router.allowedMethods()]);

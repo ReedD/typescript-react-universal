@@ -1,5 +1,6 @@
 import * as Koa from 'koa';
 import * as bodyParser from 'koa-bodyparser';
+import * as compose from 'koa-compose';
 import * as compress from 'koa-compress';
 import * as minifyHTML from 'koa-html-minifier';
 import * as serve from 'koa-static';
@@ -51,9 +52,6 @@ if (process.env.NODE_ENV === 'production') {
   );
 }
 
-app.use(appController.routes());
-app.use(appController.allowedMethods());
-app.use(userController.routes());
-app.use(userController.allowedMethods());
+app.use(compose([appController, userController]));
 
 app.listen(3000);
