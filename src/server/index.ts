@@ -15,20 +15,15 @@ const app = new Koa();
 app.use(bodyParser());
 
 app.use(
-  serve(path.join(__dirname, '..', 'public'), {
-    gzip: true,
+  compress({
+    filter: contentType => {
+      return /text|javascript|css/i.test(contentType);
+    },
+    flush: zlib.Z_SYNC_FLUSH,
   }),
 );
 
-app.use(
-  compress({
-    filter: contentType => {
-      return /text/i.test(contentType);
-    },
-    flush: zlib.Z_SYNC_FLUSH,
-    threshold: 2048,
-  }),
-);
+app.use(serve(path.join(__dirname, '..', 'public')));
 
 app.use(
   views(path.join(__dirname, 'views'), {
