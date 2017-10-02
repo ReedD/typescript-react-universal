@@ -9,6 +9,12 @@ export interface ISignUp {
   submitting: boolean;
 }
 
+export enum SignUpFormName {
+  Email = 'email',
+  Name = 'name',
+  Password = 'password',
+}
+
 export default createStore<ISignUp>('signUp', {
   email: '',
   errors: {},

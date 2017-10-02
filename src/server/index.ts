@@ -21,7 +21,7 @@ app.use(
       return /text|javascript|css/i.test(contentType);
     },
     flush: zlib.Z_SYNC_FLUSH,
-  })
+  }),
 );
 
 app.use(serve(path.join(__dirname, '..', 'public')));
@@ -32,7 +32,7 @@ app.use(
     map: {
       pug: 'pug',
     },
-  })
+  }),
 );
 
 if (process.env.NODE_ENV === 'production') {
@@ -44,7 +44,7 @@ if (process.env.NODE_ENV === 'production') {
       removeAttributeQuotes: true,
       removeComments: true,
       removeEmptyAttributes: true,
-    })
+    }),
   );
 }
 
