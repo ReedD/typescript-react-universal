@@ -62,6 +62,7 @@
     "react-dom": "^16.0.0",
     "react-jss": "^7.2.0",
     "react-router-dom": "^4.1.1",
+    "redux": "^3.7.2",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "satcheljs": "^3.1.0"

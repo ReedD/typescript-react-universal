@@ -36,7 +36,7 @@ export default class SignUp extends React.Component<ISignUpProps, undefined> {
         <div className={classes.form}>
           <TextField
             error={!!errors.name}
-            helperText={errors.email && errors.email.message}
+            helperText={errors.name && errors.name.message}
             onChange={this.onChange(SignUpFormName.Name)}
             placeholder="Name"
             value={name}

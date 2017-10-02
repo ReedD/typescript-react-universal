@@ -6,14 +6,14 @@ import {
   formSubmit,
   formSubmitted,
 } from './actions';
-import getStore from './store';
+import getStore, { SignUpFormName } from './store';
 
 mutator(formError, ({ errors }) => {
   getStore().errors = errors;
 });
 
 mutator(formChange, ({ name, value }) => {
-  getStore()[name] = value;
+  (getStore() as any)[name] = value;
 });
 
 mutator(formSubmit, () => {
@@ -25,7 +25,7 @@ mutator(formSubmitted, () => {
 });
 
 mutator(formChange, ({ name, value }) => {
-  getStore()[name] = value;
+  (getStore() as any)[name] = value;
 });
 
 mutator(formReset, () => {
