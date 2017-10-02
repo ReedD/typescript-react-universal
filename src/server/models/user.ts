@@ -72,7 +72,7 @@ userSchema
       const notFound = !await User.count({ email }).exec();
       debug(`Email ${notFound && 'not '}found`);
       if (notFound) return next(true);
-      this.invalidate('email', 'email has already been registered', email);
+      this.invalidate('email', 'This email has already been registered', email);
       return next(false);
     },
   });
