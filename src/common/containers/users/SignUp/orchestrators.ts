@@ -1,11 +1,18 @@
-import axios from 'axios';
-import { orchestrator } from 'satcheljs';
-import { formReset, formSubmit, formSubmitted } from './actions';
+import axios, { AxiosError } from 'axios';
+import { dispatch, orchestrator } from 'satcheljs';
+import { formError, formReset, formSubmit, formSubmitted } from './actions';
 
 orchestrator(formSubmit, async data => {
-  await axios.post('/api/users', {
-    data,
-  });
-  formSubmitted();
-  formReset();
+  let success = false;
+  try {
+    await axios.post('/api/users', {
+      data,
+    });
+    success = true;
+  } catch (e) {
+    const { data: error } = (e as AxiosError).response;
+    dispatch(formError(error));
+  }
+  if (success) dispatch(formReset());
+  dispatch(formSubmitted());
 });

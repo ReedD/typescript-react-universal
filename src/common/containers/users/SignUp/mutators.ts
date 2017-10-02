@@ -1,6 +1,16 @@
 import { mutator } from 'satcheljs';
-import { formChange, formReset, formSubmit, formSubmitted } from './actions';
+import {
+  formChange,
+  formError,
+  formReset,
+  formSubmit,
+  formSubmitted,
+} from './actions';
 import getStore from './store';
+
+mutator(formError, ({ errors }) => {
+  getStore().errors = errors;
+});
 
 mutator(formChange, ({ name, value }) => {
   getStore()[name] = value;
@@ -20,8 +30,9 @@ mutator(formChange, ({ name, value }) => {
 
 mutator(formReset, () => {
   const store = getStore();
-  store.name = '';
   store.email = '';
+  store.errors = {};
+  store.name = '';
   store.password = '';
   store.submitting = false;
 });

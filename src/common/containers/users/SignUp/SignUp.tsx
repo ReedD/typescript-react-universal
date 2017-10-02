@@ -28,42 +28,48 @@ export default class SignUp extends React.Component<ISignUpProps, undefined> {
   onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { email, name, password } = getStore();
-    formSubmit({ email, name, password });
+    dispatch(formSubmit({ email, name, password }));
   };
 
   onChange: EventHandler = ({ target }) => {
     switch (target) {
       case this.nameInput:
-        formChange('name', this.nameInput.value);
+        dispatch(formChange('name', this.nameInput.value));
         break;
       case this.emailInput:
-        formChange('email', this.emailInput.value);
+        dispatch(formChange('email', this.emailInput.value));
         break;
       case this.passwordInput:
-        formChange('password', this.passwordInput.value);
+        dispatch(formChange('password', this.passwordInput.value));
         break;
     }
   };
 
   render() {
     const { classes } = this.props.sheet;
-    const { email, name, password } = getStore();
+    const { email, name, password, errors } = getStore();
     return (
       <form onSubmit={this.onSubmit} className={classes.signUp}>
         <div className={classes.form}>
           <TextField
+            error={!!errors.name}
+            helperText={errors.email && errors.email.message}
             inputRef={this.nameInputRef}
             onChange={this.onChange}
             placeholder="Name"
             value={name}
           />
           <TextField
+            error={!!errors.email}
+            helperText={errors.email && errors.email.message}
             inputRef={this.emailInputRef}
             onChange={this.onChange}
             placeholder="E-Mail"
             value={email}
           />
           <TextField
+            error={!!errors.password}
+            helperText={errors.password && errors.password.message}
             inputRef={this.passwordInputRef}
             onChange={this.onChange}
             placeholder="Password"

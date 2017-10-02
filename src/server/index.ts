@@ -7,6 +7,7 @@ import * as serve from 'koa-static';
 import * as views from 'koa-views';
 import * as path from 'path';
 import * as zlib from 'zlib';
+import './config/db';
 import userController from './controllers/api/userController';
 import appController from './controllers/appController';
 
@@ -20,7 +21,7 @@ app.use(
       return /text|javascript|css/i.test(contentType);
     },
     flush: zlib.Z_SYNC_FLUSH,
-  }),
+  })
 );
 
 app.use(serve(path.join(__dirname, '..', 'public')));
@@ -31,7 +32,7 @@ app.use(
     map: {
       pug: 'pug',
     },
-  }),
+  })
 );
 
 if (process.env.NODE_ENV === 'production') {
@@ -43,7 +44,7 @@ if (process.env.NODE_ENV === 'production') {
       removeAttributeQuotes: true,
       removeComments: true,
       removeEmptyAttributes: true,
-    }),
+    })
   );
 }
 

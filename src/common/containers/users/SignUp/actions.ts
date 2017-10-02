@@ -1,21 +1,27 @@
-import { boundActionCreator } from 'satcheljs';
+import { IValidationError } from 'interfaces';
+import { actionCreator } from 'satcheljs';
 import { ISignUpForm } from './interfaces';
 
 type FormName = 'name' | 'email' | 'password';
 
-export const formChange = boundActionCreator(
+export const formChange = actionCreator(
   'FORM_CHANGE',
   (name: FormName, value: string) => ({
     name,
     value,
-  }),
+  })
 );
 
-export const formSubmit = boundActionCreator(
+export const formSubmit = actionCreator(
   'FORM_SUBMIT',
-  (data: ISignUpForm) => data,
+  (data: ISignUpForm) => data
 );
 
-export const formSubmitted = boundActionCreator('FORM_SUBMITTED');
+export const formError = actionCreator(
+  'FORM_ERROR',
+  (error: IValidationError) => error
+);
 
-export const formReset = boundActionCreator('FORM_RESET');
+export const formSubmitted = actionCreator('FORM_SUBMITTED');
+
+export const formReset = actionCreator('FORM_RESET');

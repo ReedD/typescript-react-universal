@@ -1,7 +1,10 @@
 import * as bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
+import * as Debug from 'debug';
 import { IUser } from 'interfaces';
 import { connection, Document, Model, Schema } from 'mongoose';
+
+const debug = Debug('app:model:user');
 
 export const userSchema = new Schema(
   {
@@ -13,21 +16,43 @@ export const userSchema = new Schema(
   { timestamps: true },
 );
 
-userSchema.pre('validate', function(next) {
-  if (this.password) {
-    this.setPassword(this.password).then(next, next);
-  } else {
-    next();
-  }
+userSchema.virtual('password').set(function(password: string) {
+  this._password = password;
 });
 
-userSchema.methods.setPassword = function(password: string) {
-  return bcrypt
-    .genSalt(10)
-    .then(salt => bcrypt.hash(password, salt))
-    .then(hashedPassword => {
-      this.hashedPassword = hashedPassword;
-    });
+userSchema.pre('validate', async function(next) {
+  debug('Validating');
+  if (this._password) {
+    await this.setPassword(this._password);
+  }
+  next();
+});
+
+userSchema.pre('save', async next => {
+  debug('Saving');
+  next();
+});
+userSchema.post('save', async user => {
+  debug('Saved: %O', user);
+});
+
+userSchema.path('email').validate({
+  isAsync: true,
+  async validator(email: string, next: any) {
+    debug('Checking db for existing email');
+    const notFound = !await User.count({ email }).exec();
+    debug(`Email ${notFound && 'not '}found`);
+    if (notFound) return next(true);
+    this.invalidate('email', 'email has already been registered', email);
+    return next(false);
+  },
+});
+
+userSchema.methods.setPassword = async function(password: string) {
+  debug('Hashing password');
+  const salt = await bcrypt.genSalt(10);
+  this.hashedPassword = await bcrypt.hash(password, salt);
+  debug('Password hashed');
 };
 
 userSchema.methods.authenticate = function(password: string) {
@@ -39,8 +64,5 @@ export interface IUserDocument extends IUser, Document {
   setPassword: (password: string) => Promise<void>;
 }
 
-export const UserModel = connection.model<IUserDocument>('User', userSchema);
-
-const test = new UserModel({
-  fake: 'test',
-});
+const User = connection.model<any>('User', userSchema);
+export default User;

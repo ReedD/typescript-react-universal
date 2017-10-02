@@ -2,6 +2,7 @@
   "extends": ["tslint:latest", "tslint-react"],
   "rules": {
     "arrow-parens": false,
+    "curly": false,
     "jsx-no-bind": false,
     "jsx-no-multiline-js": false,
     "member-access": false,
