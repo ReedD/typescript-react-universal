@@ -24,7 +24,9 @@ export class Login extends React.Component<any, any> {
             <Link to="/signup">
               <Button>Sign Up</Button>
             </Link>
-            <Button>Login</Button>
+            <Button type="submit" raised={true} color="primary">
+              Login
+            </Button>
           </div>
         </div>
       </div>

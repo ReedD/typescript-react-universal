@@ -6,7 +6,8 @@ import {
   formSubmit,
   formSubmitted,
 } from './actions';
-import getStore, { SignUpFormName } from './store';
+import { SignUpFormName } from './interfaces';
+import getStore from './store';
 
 mutator(formError, ({ errors }) => {
   getStore().errors = errors;
@@ -34,5 +35,6 @@ mutator(formReset, () => {
   store.errors = {};
   store.name = '';
   store.password = '';
+  store.passwordConfirm = '';
   store.submitting = false;
 });

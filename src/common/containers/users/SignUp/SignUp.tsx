@@ -5,7 +5,8 @@ import useSheet from 'react-jss';
 import { Link } from 'react-router-dom';
 import { dispatch } from 'satcheljs';
 import { formChange, formSubmit } from './actions';
-import getStore, { SignUpFormName } from './store';
+import { SignUpFormName } from './interfaces';
+import getStore from './store';
 import styles from './style';
 
 type ChangeEvent = React.SyntheticEvent<HTMLElement>;
@@ -19,8 +20,8 @@ export interface ISignUpProps {
 export default class SignUp extends React.Component<ISignUpProps, undefined> {
   onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { email, name, password } = getStore();
-    dispatch(formSubmit({ email, name, password }));
+    const { email, name, password, passwordConfirm } = getStore();
+    dispatch(formSubmit({ email, name, password, passwordConfirm }));
   };
 
   onChange = (name: SignUpFormName) => (event: ChangeEvent) => {
@@ -30,7 +31,7 @@ export default class SignUp extends React.Component<ISignUpProps, undefined> {
 
   render() {
     const { classes } = this.props.sheet;
-    const { email, name, password, errors } = getStore();
+    const { email, name, password, passwordConfirm, errors } = getStore();
     return (
       <form onSubmit={this.onSubmit} className={classes.signUp}>
         <div className={classes.form}>
@@ -56,11 +57,23 @@ export default class SignUp extends React.Component<ISignUpProps, undefined> {
             type="password"
             value={password}
           />
+          <TextField
+            error={!!errors.passwordConfirm}
+            helperText={
+              errors.passwordConfirm && errors.passwordConfirm.message
+            }
+            onChange={this.onChange(SignUpFormName.PasswordConfirm)}
+            placeholder="Confirm Password"
+            type="password"
+            value={passwordConfirm}
+          />
           <div className={classes.actions}>
             <Link to="/login">
               <Button>Login</Button>
             </Link>
-            <Button type="submit">Sign Up</Button>
+            <Button type="submit" raised={true} color="primary">
+              Sign Up
+            </Button>
           </div>
         </div>
       </form>
