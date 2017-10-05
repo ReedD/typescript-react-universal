@@ -11,7 +11,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, '..', 'dist', 'public', 'js'),
-    publicPath: '/assets/',
+    publicPath: '/js/',
     filename: 'bundle.js',
   },
   plugins: [
@@ -47,6 +47,7 @@ module.exports = {
           useCache: true,
           babelOptions: {
             presets: [['es2015', { modules: false }], 'react'],
+            plugins: ['babel-plugin-syntax-dynamic-import'],
           },
         },
       },
