@@ -7,7 +7,7 @@ import styles from './style';
 
 @observer
 @useSheet(styles)
-export class Login extends React.Component<any, any> {
+export default class Login extends React.Component<any, any> {
   public render() {
     const { classes } = this.props.sheet;
     return (
