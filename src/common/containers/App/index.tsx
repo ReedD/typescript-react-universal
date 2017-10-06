@@ -1,7 +1,4 @@
-import About from 'containers/pages/About';
-import Home from 'containers/pages/Home';
-import Login from 'containers/users/Login';
-import SignUp from 'containers/users/SignUp';
+import { About, Home, Login, SignUp } from 'containers';
 import { create } from 'jss';
 import preset from 'jss-preset-default';
 import { MuiThemeProvider } from 'material-ui/styles';

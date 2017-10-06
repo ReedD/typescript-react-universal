@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "start": "DEBUG=app* ./dev-server",
-    "build": "npm run ts:lint && rm -rf ./dist && npm run webpack:build",
+    "build": "yarn run ts:lint && rm -rf ./dist && NODE_ENV=production yarn run webpack:build",
     "precommit": "lint-staged",
     "prettier": "yarn run prettier:ts && yarn run prettier:js",
     "prettier:ts": "prettier --single-quote --trailing-comma all --write \"./{src,webpack}/**/*.{ts,tsx}\"",
@@ -89,6 +89,8 @@
     "@types/react-tap-event-plugin": "^0.0.30",
     "awesome-typescript-loader": "^3.1.3",
     "babel-core": "^6.24.1",
+    "babel-plugin-dynamic-import-webpack": "^1.0.1",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
@@ -104,6 +106,7 @@
     "tslint-react": "^3.0.0",
     "typescript": "^2.5.3",
     "webpack": "^3.6.0",
+    "webpack-bundle-analyzer": "^2.9.0",
     "webpack-node-externals": "^1.6.0"
   }
 }

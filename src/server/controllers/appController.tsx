@@ -21,7 +21,10 @@ router.get('/*', async (ctx, next) => {
   sheetsRegistry.reset();
 
   // Render the component to a string
-  const context = {};
+  const splitPoints: string[] = [];
+  const context = {
+    splitPoints,
+  };
   const html = renderToString(
     <StaticRouter location={ctx.url} context={context}>
       <App />
@@ -36,6 +39,7 @@ router.get('/*', async (ctx, next) => {
   await ctx.render('app', {
     html,
     preloadedState: finalState,
+    splitPoints,
     styles,
   });
 });

@@ -7,4 +7,5 @@ html
     #root !{html}
     block scripts
       script window.__PRELOADED_STATE__ = !{JSON.stringify(preloadedState)}
+      script window.splitPoints = !{JSON.stringify(splitPoints)};
       script(src='/js/bundle.js')

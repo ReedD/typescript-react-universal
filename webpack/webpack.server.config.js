@@ -45,6 +45,16 @@ module.exports = {
   },
   externals: [nodeExternals()],
   module: {
-    loaders: [{ test: /\.tsx?$/, loader: 'awesome-typescript-loader' }],
+    loaders: [
+      {
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader',
+        query: {
+          babelOptions: {
+            plugins: ['dynamic-import-webpack'],
+          },
+        },
+      },
+    ],
   },
 };
