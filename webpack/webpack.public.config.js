@@ -1,14 +1,14 @@
 const webpack = require('webpack');
 const path = require('path');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   devtool: isProduction ? 'hidden-source-map' : 'eval-source-map',
-  entry: [
-    'babel-polyfill',
-    path.join(__dirname, '..', 'src', 'public', 'js', 'main.tsx'),
-  ],
+  entry: {
+    app: path.join(__dirname, '..', 'src', 'public', 'js', 'main.tsx'),
+  },
   output: {
     path: path.join(__dirname, '..', 'dist', 'public', 'js'),
     publicPath: '/js/',
@@ -26,6 +26,22 @@ module.exports = {
     }),
     isProduction && new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'app',
+      minChunks: Infinity,
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      children: true,
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      async: true,
+      children: true,
+      minChunks: 2,
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      openAnalyzer: false,
+    }),
   ].filter(item => item),
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],

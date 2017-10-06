@@ -1,4 +1,6 @@
-import { Button, TextField } from 'material-ui';
+// import { Button, TextField } from 'material-ui';
+import Button from 'material-ui/Button';
+import TextField from 'material-ui/TextField';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 import useSheet from 'react-jss';

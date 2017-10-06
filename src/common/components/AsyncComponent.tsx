@@ -6,7 +6,7 @@ interface IAsyncComponentState {
 
 export default function asyncComponent(
   chunkName: string,
-  getComponent: Promise<any>
+  getComponent: () => Promise<any>
 ) {
   return class AsyncComponent extends React.Component<
     any,
@@ -15,10 +15,12 @@ export default function asyncComponent(
     static Component: any = null;
 
     static loadComponent() {
-      return getComponent.then(c => c.default).then(Component => {
-        AsyncComponent.Component = Component;
-        return Component;
-      });
+      return getComponent()
+        .then(c => c.default)
+        .then(Component => {
+          AsyncComponent.Component = Component;
+          return Component;
+        });
     }
 
     mounted = false;
