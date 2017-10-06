@@ -1,7 +1,8 @@
 import { create } from 'jss';
 import preset from 'jss-preset-default';
-import { green, red } from 'material-ui/colors';
-import { createMuiTheme } from 'material-ui/styles';
+import green from 'material-ui/colors/green';
+import red from 'material-ui/colors/red';
+import createMuiTheme from 'material-ui/styles/createMuiTheme';
 import createPalette from 'material-ui/styles/createPalette';
 import { SheetsRegistry } from 'react-jss';
 

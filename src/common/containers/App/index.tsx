@@ -1,7 +1,6 @@
 import { About, Home, Login, SignUp } from 'containers';
-import { create } from 'jss';
 import preset from 'jss-preset-default';
-import { MuiThemeProvider } from 'material-ui/styles';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import * as React from 'react';
 import useSheet, { JssProvider } from 'react-jss';
 import { Route } from 'react-router-dom';
