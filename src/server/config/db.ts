@@ -8,6 +8,7 @@ const debug = Debug('app:db');
 
 mongoose.connect(process.env.MONGO || 'mongodb://localhost:27017/app', {
   promiseLibrary: bluebird,
+  useMongoClient: true,
 });
 
 const db = mongoose.connection;

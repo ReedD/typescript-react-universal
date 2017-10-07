@@ -1,3 +1,5 @@
+import { preloadComponents } from 'components/AsyncComponent';
+import * as Debug from 'debug';
 import * as Koa from 'koa';
 import * as bodyParser from 'koa-bodyparser';
 import * as compose from 'koa-compose';
@@ -10,6 +12,15 @@ import * as zlib from 'zlib';
 import './config/db';
 import userController from './controllers/api/userController';
 import appController from './controllers/appController';
+
+const debug = Debug('app');
+debug('App starting');
+
+(async () => {
+  debug('Preloading all AsyncComponents');
+  await preloadComponents();
+  debug('AsyncComponents preloaded');
+})();
 
 const app = new Koa();
 
@@ -50,4 +61,6 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(compose([appController, userController]));
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000, () => {
+  debug(`App listening on port ${process.env.PORT || 3000}`);
+});

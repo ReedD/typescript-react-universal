@@ -4,14 +4,13 @@ interface IAsyncComponentState {
   Component?: any;
 }
 
+const components = [];
+
 export default function asyncComponent(
   chunkName: string,
-  getComponent: () => Promise<any>
+  getComponent: () => Promise<any>,
 ) {
-  return class AsyncComponent extends React.Component<
-    any,
-    IAsyncComponentState
-  > {
+  class AsyncComponent extends React.Component<any, IAsyncComponentState> {
     static Component: any = null;
 
     static loadComponent() {
@@ -61,5 +60,14 @@ export default function asyncComponent(
       }
       return null;
     }
-  };
+  }
+  components.push(AsyncComponent);
+  return AsyncComponent;
 }
+
+export const preloadComponents = () => {
+  const promises = components.map(Component => {
+    return Component.loadComponent();
+  });
+  return Promise.all(promises);
+};

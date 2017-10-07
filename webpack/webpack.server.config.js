@@ -25,7 +25,10 @@ module.exports = {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
-    new CopyWebpackPlugin([{ from: './src/server/views', to: './views' }]),
+    new CopyWebpackPlugin([
+      { from: './src/server/views', to: './views' },
+      { from: './src/public', to: '../public', ignore: ['**/*.{ts,tsx}'] },
+    ]),
     new webpack.optimize.OccurrenceOrderPlugin(),
   ],
   resolve: {
