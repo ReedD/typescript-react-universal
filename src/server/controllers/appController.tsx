@@ -29,25 +29,25 @@ router.get('/*', async (ctx, next) => {
   const context = {
     splitPoints,
   };
-  debug('Start React render');
   const html = renderToString(
     <StaticRouter location={ctx.url} context={context}>
       <App />
     </StaticRouter>,
   );
-  debug('Start CSS generation');
+  debug('React components SSR');
   const { styles } = new cleancss().minify(sheetsRegistry.toString());
+  debug('CSS generated');
 
   // Grab the initial state from our Redux store
   const finalState = {}; // store.getState();
 
-  debug('Start Pug render');
   await ctx.render('app', {
     html,
     preloadedState: finalState,
     splitPoints,
     styles,
   });
+  debug('Pug rendered');
   debug('GET complete');
 });
 

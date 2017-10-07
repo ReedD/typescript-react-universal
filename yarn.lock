@@ -122,14 +122,7 @@
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-1.3.1.tgz#2cf42972d0931c1060c7d5fa6627fce6bd876f2f"
 
-"@types/mongodb@*":
-  version "2.2.11"
-  resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-2.2.11.tgz#595cd869afa1c4cf6ee8935eb25a0783ab46e6aa"
-  dependencies:
-    "@types/bson" "*"
-    "@types/node" "*"
-
-"@types/mongodb@^2.2.12":
+"@types/mongodb@*", "@types/mongodb@^2.2.12":
   version "2.2.12"
   resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-2.2.12.tgz#55852337d2ce22382712423fa901ea06c6e46d99"
   dependencies:
@@ -179,11 +172,7 @@
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/@types/react-tap-event-plugin/-/react-tap-event-plugin-0.0.30.tgz#123f35080412f489b6770c5a65c159ff96654cb5"
 
-"@types/react@*":
-  version "16.0.7"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.7.tgz#f85b6c33c988a1631e2f32fedae71ec6d9718a0d"
-
-"@types/react@^16.0.9":
+"@types/react@*", "@types/react@^16.0.9":
   version "16.0.9"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.9.tgz#2ad952abbb22617620927694f9a4bce292d7fb2b"
 
@@ -1042,11 +1031,7 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-bluebird@^3.1.1, bluebird@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c"
-
-bluebird@^3.5.1:
+bluebird@^3.1.1, bluebird@^3.5.0, bluebird@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
 
@@ -3375,7 +3360,7 @@ is-glob@^4.0.0:
   dependencies:
     is-extglob "^2.1.1"
 
-is-in-browser@^1.0.2, is-in-browser@^1.1.3:
+is-in-browser@^1.0.2:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/is-in-browser/-/is-in-browser-1.1.3.tgz#56ff4db683a078c6082eb95dad7dc62e1d04f835"
 
@@ -3404,12 +3389,6 @@ is-number@^3.0.0:
 is-obj@^1.0.0, is-obj@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-obj/-/is-obj-1.0.1.tgz#3e4729ac1f5fde025cd7d83a896dab9f4f67db0f"
-
-is-observable@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/is-observable/-/is-observable-0.2.0.tgz#b361311d83c6e5d726cabf5e250b0237106f5ae2"
-  dependencies:
-    symbol-observable "^0.2.2"
 
 is-odd@^1.0.0:
   version "1.0.0"
@@ -3695,14 +3674,6 @@ jss@^8.1.0:
   resolved "https://registry.yarnpkg.com/jss/-/jss-8.1.0.tgz#b32f15efcce22446dfda4c2be09a04f38431da0a"
   dependencies:
     is-in-browser "^1.0.2"
-    warning "^3.0.0"
-
-jss@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/jss/-/jss-9.0.0.tgz#cc5264b16ae0d605ce5e293295c8a03caf3e8413"
-  dependencies:
-    is-in-browser "^1.1.3"
-    is-observable "^0.2.0"
     warning "^3.0.0"
 
 jstransformer@1.0.0:
@@ -6366,10 +6337,6 @@ supports-color@^4.0.0, supports-color@^4.2.1, supports-color@^4.4.0:
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-4.4.0.tgz#883f7ddabc165142b2a61427f3352ded195d1a3e"
   dependencies:
     has-flag "^2.0.0"
-
-symbol-observable@^0.2.2:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-0.2.4.tgz#95a83db26186d6af7e7a18dbd9760a2f86d08f40"
 
 symbol-observable@^1.0.1, symbol-observable@^1.0.3, symbol-observable@^1.0.4:
   version "1.0.4"
