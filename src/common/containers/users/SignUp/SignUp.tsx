@@ -5,7 +5,7 @@ import * as React from 'react';
 import useSheet from 'react-jss';
 import { Link } from 'react-router-dom';
 import { dispatch } from 'satcheljs';
-import { formChange, formSubmit } from './actions';
+import { formChange, formReset, formSubmit } from './actions';
 import { SignUpFormName } from './interfaces';
 import getStore from './store';
 import styles from './style';
@@ -18,7 +18,11 @@ export interface ISignUpProps {
 
 @useSheet(styles)
 @observer
-export default class SignUp extends React.Component<ISignUpProps, undefined> {
+export default class SignUp extends React.Component<ISignUpProps> {
+  componentWillUnmount() {
+    dispatch(formReset());
+  }
+
   onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { email, name, password, passwordConfirm } = getStore();
