@@ -6,7 +6,7 @@ import {
   formSubmit,
   formSubmitted,
 } from './actions';
-import { SignUpFormName } from './interfaces';
+import { LoginFormName } from './interfaces';
 import getStore from './store';
 
 mutator(formError, ({ errors = {} }) => {
@@ -33,8 +33,6 @@ mutator(formReset, () => {
   const store = getStore();
   store.email = '';
   store.errors = {};
-  store.name = '';
   store.password = '';
-  store.passwordConfirm = '';
   store.submitting = false;
 });

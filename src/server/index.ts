@@ -13,6 +13,26 @@ import './config/db';
 import userController from './controllers/api/userController';
 import appController from './controllers/appController';
 
+Object.defineProperty(Error.prototype, 'message', {
+  configurable: true,
+  enumerable: true,
+});
+
+if (!('toJSON' in Error.prototype)) {
+  Object.defineProperty(Error.prototype, 'toJSON', {
+    configurable: true,
+    value() {
+      const alt = {};
+      // Object.getOwnPropertyNames(this)
+      ['message', 'name', 'errors'].forEach(function(key) {
+        alt[key] = this[key];
+      }, this);
+      return alt;
+    },
+    writable: true,
+  });
+}
+
 const debug = Debug('app');
 debug('App starting');
 

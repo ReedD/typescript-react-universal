@@ -1,22 +1,22 @@
 import { IValidationError } from 'interfaces';
 import { actionCreator } from 'satcheljs';
-import { ISignUpForm, SignUpFormName } from './interfaces';
+import { ILoginForm, LoginFormName } from './interfaces';
 
 export const formChange = actionCreator(
-  'users.signUp.formChange',
-  (name: SignUpFormName, value: string) => ({
+  'users.login.formChange',
+  (name: LoginFormName, value: string) => ({
     name,
     value,
   })
 );
 
 export const formSubmit = actionCreator(
-  'users.signUp.formSubmit',
-  (data: ISignUpForm) => data
+  'users.login.formSubmit',
+  (data: ILoginForm) => data
 );
 
 export const formError = actionCreator(
-  'users.signUp.formError',
+  'users.login.formError',
   (error: IValidationError) => error
 );
 
