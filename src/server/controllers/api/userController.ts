@@ -15,6 +15,7 @@ router.post('/api/users/login', async (ctx, next) => {
     const { email, password } = ctx.request.body.data;
     const user = await User.findOne({ email }).exec();
     if (user && (await user.authenticate(password))) {
+      ctx.session.user = user;
       ctx.body = user;
     } else {
       const error = new AppError('Invalid email/password combination', {
